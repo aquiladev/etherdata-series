@@ -72,4 +72,5 @@ FROM `bigquery-public-data.ethereum_blockchain.contracts`
 Contract obsolescence
 
 *#7151205*
+
 ---

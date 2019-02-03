@@ -74,3 +74,34 @@ Contract obsolescence
 *#7151205*
 
 ---
+## 9
+
+In average contract contains **5.199765300477151** functions
+*#7160984*
+
+```
+SELECT AVG(ARRAY_LENGTH(function_sighashes))
+FROM `bigquery-public-data.ethereum_blockchain.contracts`
+```
+
+---
+## 10
+
+There are **1790.3942006269608** contracts deployed daily
+
+-OR-
+
+In average **1790.3942006269608** contracts deployed daily
+
+*#7165919*
+
+```
+SELECT AVG(c)
+FROM (
+  SELECT TIMESTAMP_TRUNC(block_timestamp, DAY) AS d, COUNT(*) AS c
+  FROM `bigquery-public-data.ethereum_blockchain.contracts`
+  GROUP BY 1
+)
+```
+
+---

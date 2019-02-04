@@ -105,3 +105,47 @@ FROM (
 ```
 
 ---
+## 11
+
+Average growth rate of contracts' amount is **33.103825136612016%**
+
+*#7170777*
+
+```
+SELECT AVG(c_growth_percent)
+FROM (
+  SELECT d, c, prev_c, ROUND(100 * (c - prev_c)/prev_c) c_growth_percent
+  FROM (
+    SELECT d, c, LAG(c, 1) OVER(ORDER BY d) prev_c
+    FROM (
+      SELECT TIMESTAMP_TRUNC(block_timestamp, WEEK) AS d, COUNT(*) AS c
+      FROM `bigquery-public-data.ethereum_blockchain.contracts`
+      GROUP BY 1
+      ORDER BY 1
+    )
+  )
+)
+```
+
+---
+## 12*
+
+Average growth rate of transactions' amount is **%**
+
+```
+SELECT AVG(c_growth_percent)
+FROM (
+  SELECT d, c, prev_c, ROUND(100 * (c - prev_c)/prev_c) c_growth_percent
+  FROM (
+    SELECT d, c, LAG(c, 1) OVER(ORDER BY d) prev_c
+    FROM (
+      SELECT TIMESTAMP_TRUNC(block_timestamp, WEEK) AS d, COUNT(*) AS c
+      FROM `bigquery-public-data.ethereum_blockchain.transactions` 
+      GROUP BY 1
+      ORDER BY 1
+    )
+  )
+)
+```
+
+---

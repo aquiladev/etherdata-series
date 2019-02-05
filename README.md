@@ -128,9 +128,11 @@ FROM (
 ```
 
 ---
-## 12*
+## 12
 
-Average growth rate of transactions' amount is **%**
+Average growth rate of transactions' amount is **4.672131147540986%**
+
+*#7175715*
 
 ```
 SELECT AVG(c_growth_percent)

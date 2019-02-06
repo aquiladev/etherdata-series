@@ -151,3 +151,24 @@ FROM (
 ```
 
 ---
+## 13
+
+Average growth rate of token transfers' amount is **89.24561403508777%**
+
+*#7180615*
+
+```
+SELECT AVG(c_growth_percent)
+FROM (
+  SELECT d, c, prev_c, ROUND(100 * (c - prev_c)/prev_c) c_growth_percent
+  FROM (
+    SELECT d, c, LAG(c, 1) OVER(ORDER BY d) prev_c
+    FROM (
+      SELECT TIMESTAMP_TRUNC(block_timestamp, WEEK) AS d, COUNT(*) AS c
+      FROM `bigquery-public-data.ethereum_blockchain.token_transfers`
+      GROUP BY 1
+      ORDER BY 1
+    )
+  )
+)
+```

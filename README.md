@@ -172,3 +172,10 @@ FROM (
   )
 )
 ```
+
+---
+## 14
+
+Contract deployments chart shows amount of deployed contracts weekly. It displays anomalies using Iglewicz and Hoaglin's method.
+
+---
